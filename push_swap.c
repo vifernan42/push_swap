@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/09 18:24:06 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/09 18:53:14 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ void	print_stack(t_list *stack_a, t_list *stack_b)
 	printf("a\t\t\tb\n");
 	printf("**************************\n");
 }
-
 
 int	ft_fill_a(t_list *stack_a, int val)
 {
