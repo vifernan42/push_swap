@@ -1,34 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_lib.h                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:13:40 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/09 16:15:54 by vifernan         ###   ########.fr       */
+/*   Created: 2021/04/07 16:34:20 by vifernan          #+#    #+#             */
+/*   Updated: 2021/04/16 14:04:41 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_LIB_H
-#define PUSH_SWAP_LIB_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include "./libft/libft.h"
+char	*ft_strnstr(const char *hay, const char *ne, size_t len)
+{
+	size_t		i;
+	size_t		j;
 
-typedef struct s_element {
-	int num;
-	struct s_element *next;
-	struct s_element *prev;
-}				t_element;
-
-typedef struct s_list {
-	t_element *first;
-	t_element *last;
-	int  size;
-}				t_list;
-
-#endif
+	i = 0;
+	if (ne[i] == '\0')
+		return ((char *) hay);
+	while (hay[i] != '\0')
+	{
+		j = 0;
+		while (hay[i + j] == ne[j] && (i + j) < len)
+		{
+			if (ne[j + 1] == '\0')
+				return ((char *) hay + i);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}

@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_lib.h                                    :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:13:40 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/09 16:15:54 by vifernan         ###   ########.fr       */
+/*   Created: 2021/04/07 15:25:39 by vifernan          #+#    #+#             */
+/*   Updated: 2021/04/19 15:25:17 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_LIB_H
-#define PUSH_SWAP_LIB_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include "./libft/libft.h"
+char	*ft_strchr(const char *s, int c)
+{
+	const char	*s1;
+	size_t		i;
+	size_t		x;
 
-typedef struct s_element {
-	int num;
-	struct s_element *next;
-	struct s_element *prev;
-}				t_element;
-
-typedef struct s_list {
-	t_element *first;
-	t_element *last;
-	int  size;
-}				t_list;
-
-#endif
+	s1 = s;
+	x = ft_strlen(s1);
+	if ((char)c == 0)
+		return ((char *) s1 + x);
+	i = 0;
+	while (i < x + 1)
+	{
+		if (s1[i] == (char)c)
+			return ((char *) s1 + i);
+		i++;
+	}
+	return (0);
+}

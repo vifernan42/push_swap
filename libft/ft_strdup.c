@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_lib.h                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:13:40 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/09 16:15:54 by vifernan         ###   ########.fr       */
+/*   Created: 2021/04/12 11:25:37 by vifernan          #+#    #+#             */
+/*   Updated: 2021/04/15 19:43:25 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_LIB_H
-#define PUSH_SWAP_LIB_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include "./libft/libft.h"
+char	*ft_strdup(const char *s1)
+{
+	size_t	i;
+	size_t	j;
+	char	*dst;
 
-typedef struct s_element {
-	int num;
-	struct s_element *next;
-	struct s_element *prev;
-}				t_element;
-
-typedef struct s_list {
-	t_element *first;
-	t_element *last;
-	int  size;
-}				t_list;
-
-#endif
+	i = ft_strlen(s1);
+	dst = (char *) malloc(i + 1);
+	if (!dst)
+		return (0);
+	j = 0;
+	while (s1[j] != '\0')
+	{
+		dst[j] = s1[j];
+		j++;
+	}
+	dst[j] = '\0';
+	return (dst);
+}

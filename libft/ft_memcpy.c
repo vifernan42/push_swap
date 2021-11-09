@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_lib.h                                    :+:      :+:    :+:   */
+/*   memcpy.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:13:40 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/09 16:15:54 by vifernan         ###   ########.fr       */
+/*   Created: 2021/04/06 16:18:52 by vifernan          #+#    #+#             */
+/*   Updated: 2021/04/13 14:40:17 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_LIB_H
-#define PUSH_SWAP_LIB_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include "./libft/libft.h"
+char	*ft_memcpy(void *dst, const void *src, size_t n)
+{
+	size_t		i;
+	char		*d;
+	const char	*s;
 
-typedef struct s_element {
-	int num;
-	struct s_element *next;
-	struct s_element *prev;
-}				t_element;
-
-typedef struct s_list {
-	t_element *first;
-	t_element *last;
-	int  size;
-}				t_list;
-
-#endif
+	i = 0;
+	d = dst;
+	s = src;
+	if (d == 0 && s == 0)
+		return (0);
+	while (n--)
+	{
+		d[i] = s[i];
+		i++;
+	}
+	return (dst);
+}

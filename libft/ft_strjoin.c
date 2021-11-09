@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_lib.h                                    :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/03 16:13:40 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/09 16:15:54 by vifernan         ###   ########.fr       */
+/*   Created: 2021/04/12 16:08:16 by vifernan          #+#    #+#             */
+/*   Updated: 2021/04/20 13:53:37 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_LIB_H
-#define PUSH_SWAP_LIB_H
+#include "libft.h"
 
-# include <stdio.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdarg.h>
-# include "./libft/libft.h"
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-typedef struct s_element {
-	int num;
-	struct s_element *next;
-	struct s_element *prev;
-}				t_element;
-
-typedef struct s_list {
-	t_element *first;
-	t_element *last;
-	int  size;
-}				t_list;
-
-#endif
+	if (s1 && s2)
+	{
+		str = (char *)malloc((ft_strlen(s1) + ft_strlen(s2)) + 1);
+		if (!str)
+			return (0);
+		i = 0;
+		while (s1[i] != '\0')
+		{
+			str[i] = s1[i];
+			i++;
+		}
+		j = 0;
+		while (s2[j] != '\0')
+			str[i++] = s2[j++];
+		str[i] = '\0';
+		return (str);
+	}
+	return (0);
+}
