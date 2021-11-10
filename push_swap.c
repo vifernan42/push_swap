@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/09 18:53:14 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/10 15:51:42 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ void	ft_check(char *temp, t_list *stack_a)
 	i = -1;
 	while (temp[++i] != '\0')
 	{
-		if ((ft_isdigit(temp[i]) != 1 && (temp[i] != ' ' &&
-				temp[i] != '-')) ||
-				(temp[i] == '-' && (temp[i - 1] != ' ' && i != 0)))
+		if ((ft_isdigit(temp[i]) != 1 && temp[i] != ' ' && temp[i] != '-') ||
+				(temp[i] == '-' && (ft_isdigit(temp[i + 1]) != 1 &&
+					(temp[i - 1] != ' ' || i != 0))))
 		{
 			printf("Wrong arg!\n");
 			exit (0);
@@ -145,18 +145,26 @@ void	ft_save_values(int argc, char **argv, t_list *stack_a)
 
 int main(int argc, char **argv)
 {
-	t_list *stack_a;
-	t_list *stack_b;
+	t_list	*stack_a;
+	t_list	*stack_b;
+	int		i;
 
 	stack_a = malloc(sizeof(t_list));
 	stack_b = malloc(sizeof(t_list));
+	stack_b->id = 'b';
+	stack_a->id = 'a';
 	stack_a->size = 0;
+	i = -1;
 	if (argc > 1)
 	{
 		ft_save_values(argc, argv, stack_a);
 		stack_b->first = NULL;
 		stack_b->last = NULL;
 		print_stack(stack_a, stack_b);
+		while (++i <= stack_a->size)
+			ft_double_swap(stack_a, stack_b);
+		print_stack(stack_a, stack_b);
+		printf("%d\n", stack_a->size);
 	}
 	else
 		printf("Wrong arg!\n");

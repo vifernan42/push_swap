@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:13:40 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/09 16:15:54 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/10 15:50:39 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,13 @@ typedef struct s_element {
 }				t_element;
 
 typedef struct s_list {
+	char	id;
 	t_element *first;
 	t_element *last;
 	int  size;
 }				t_list;
+
+void	ft_swap(t_list *stack);
+void	ft_double_swap(t_list *stack_a, t_list *stack_b);
 
 #endif
