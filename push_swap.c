@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/10 15:51:42 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/11 20:30:38 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_fill_stack(char *temp, t_list *stack_a)
 
 	aux = ft_split(temp, ' ');
 	i = -1;
-	while (aux[++i] != '\0')
+	while (aux[++i])
 	{
 		if (stack_a->size == 0)
 			stack_a->size += ft_fill_a(stack_a, ft_atoi(aux[i]));
@@ -104,7 +104,7 @@ void	ft_check(char *temp, t_list *stack_a)
 	int i;
 
 	i = -1;
-	while (temp[++i] != '\0')
+	while (temp[++i])
 	{
 		if ((ft_isdigit(temp[i]) != 1 && temp[i] != ' ' && temp[i] != '-') ||
 				(temp[i] == '-' && (ft_isdigit(temp[i + 1]) != 1 &&
