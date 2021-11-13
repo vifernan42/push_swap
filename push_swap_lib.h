@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:13:40 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/10 15:50:39 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/13 14:53:14 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,10 @@ typedef struct s_list {
 
 void	ft_swap(t_list *stack);
 void	ft_double_swap(t_list *stack_a, t_list *stack_b);
+void	ft_push(t_list *stack_a, t_list *stack_b);
+void	ft_rotate_up(t_list *stack);
+void	ft_rotate_down(t_list *stack);
+void	ft_double_up(t_list *stack_a, t_list *stack_b);
+void	ft_double_down(t_list *stack_a, t_list *stack_b);
 
 #endif

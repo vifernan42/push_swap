@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/11 20:30:38 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/13 15:55:45 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,17 +154,20 @@ int main(int argc, char **argv)
 	stack_b->id = 'b';
 	stack_a->id = 'a';
 	stack_a->size = 0;
-	i = -1;
+	i = 7;
 	if (argc > 1)
 	{
 		ft_save_values(argc, argv, stack_a);
 		stack_b->first = NULL;
 		stack_b->last = NULL;
 		print_stack(stack_a, stack_b);
-		while (++i <= stack_a->size)
-			ft_double_swap(stack_a, stack_b);
-		print_stack(stack_a, stack_b);
-		printf("%d\n", stack_a->size);
+	while (++i <= stack_a->size)
+			ft_push(stack_a, stack_b);
+	print_stack(stack_a, stack_b);
+//	printf("\\\\\\\\\\\\\\\\\\\%d\n", stack_b->last->num);
+	ft_rotate_down(stack_b);
+	print_stack(stack_a, stack_b);
+	printf("%d\n", stack_a->size);
 	}
 	else
 		printf("Wrong arg!\n");
