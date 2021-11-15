@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:53:23 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/13 15:55:41 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/15 13:38:50 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,35 +64,73 @@ void	ft_double_swap(t_list *stack_a, t_list *stack_b)
 	}
 }
 
-void	ft_push(t_list *stack_out, t_list *stack_in)
+
+
+
+
+
+
+
+void	ft_first_push(t_list *stack_out, t_list *stack_in)
 {
-	t_element *element1;
-	t_element *element2;
+	t_element	*element;
+
+	element = stack_out->first;
+	if (element->next)
+	{
+		element->next->prev = NULL;
+		stack_out->first = element->next;
+	}
+	else
+		stack_out->first = NULL;
+	element->next = NULL;
+	element->prev = NULL;
+	stack_in->first = element;
+	stack_in->last = element;
+}
+
+void	ft_last_push(t_list *stack_out, t_list *stack_in)
+{
+	t_element	*element;
+	t_element	*element9;
+
+	element9 = stack_out->first;
+	element = stack_in->first;
+	element9->next = element;
+	element9->prev = NULL;
+	element->prev = element9;
+	stack_in->first = element9;
+	stack_out->first = NULL;
+	stack_out->last = NULL;
+}
+
+void	ft_push_it(t_list *stack_out, t_list *stack_in)
+{
+	t_element	*element1;
+	t_element	*element2;
 
 	element1 = stack_out->first;
-	if (element1)
+	element2 = stack_in->first,
+	element1->next->prev = NULL;
+	stack_out->first = element1->next;
+	element2->prev = element1;
+	element1->next = element2;
+	element1->prev = NULL;
+	stack_in->first = element1;
+}
+
+void	ft_push(t_list *stack_out, t_list *stack_in)
+{
+	if (stack_out->first)
 	{
-		if (element1->next)
-		{
-			element1->next->prev = NULL;
-			stack_out->first = element1->next;
-		}
-		else
-			stack_out->first = NULL;
 		if (!stack_in->first)
+			ft_first_push(stack_out, stack_in);
+	else
 		{
-			element2 = element1;
-			element2->next = NULL;
-			element2->prev = NULL;
-			stack_in->first = element2;
-			stack_in->last = element2;
-		}
-		else if (stack_in->first)
-		{
-			element2 = element1;
-			element2->next = stack_in->first;
-			element2->prev = element1;
-			stack_in->first = element2;
+			if (stack_out->first && !stack_out->first->next)
+				ft_last_push(stack_out, stack_in);
+		else
+				ft_push_it(stack_out, stack_in);
 		}
 		if (stack_in->id == 'a')
 			printf("pa\n");
@@ -100,7 +138,6 @@ void	ft_push(t_list *stack_out, t_list *stack_in)
 			printf("pb\n");
 	}
 }
-
 
 void	ft_rotate_up(t_list *stack)
 {
@@ -160,13 +197,13 @@ void	ft_rotate_down(t_list *stack)
 
 	element1 = stack->first;
 	element9 = stack->last;
+	printf("%d\n", element9->prev->num);
 	if (stack->first && stack->first->next)
 	{
 		stack->first = element9;
 		stack->last = element9->prev;
 		element1->prev = element9;
-		element9->prev->next = NULL;
-		element9->prev = NULL;
+		stack->last->next = NULL;
 		element9->next = element1;
 		if (stack->id == 'a')
 			printf("rra\n");
@@ -186,6 +223,7 @@ void	ft_double_down(t_list *stack_a, t_list *stack_b)
 	element9a = stack_a->last;
 	element1b = stack_b->first;
 	element9b = stack_b->last;
+	printf("ENTRA!!!!!\n");
 	if (stack_a->first && stack_a->first->next && stack_b->first && stack_b->first->next)
 	{
 		stack_a->first = element9a;
