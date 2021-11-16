@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:53:23 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/15 13:38:50 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/16 18:43:31 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,7 +197,7 @@ void	ft_rotate_down(t_list *stack)
 
 	element1 = stack->first;
 	element9 = stack->last;
-	printf("%d\n", element9->prev->num);
+//	printf("%d\n", element9->prev->num);
 	if (stack->first && stack->first->next)
 	{
 		stack->first = element9;

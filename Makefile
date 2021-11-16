@@ -6,16 +6,17 @@
 #    By: vifernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 13:23:53 by vifernan          #+#    #+#              #
-#    Updated: 2021/11/10 15:10:14 by vifernan         ###   ########.fr        #
+#    Updated: 2021/11/16 15:51:32 by vifernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall
 
 SRCS	= 	push_swap.c \
 			moves.c \
+			algorithm.c \
 
 OBJS	= $(SRCS:.c=.o)
 CC		= 	gcc

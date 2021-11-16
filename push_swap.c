@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/15 13:43:48 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/16 18:42:43 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,13 +161,10 @@ int main(int argc, char **argv)
 		stack_b->first = NULL;
 		stack_b->last = NULL;
 		print_stack(stack_a, stack_b);
-	while (++i <= stack_a->size)
-			ft_push(stack_a, stack_b);
-	print_stack(stack_a, stack_b);
-//	printf("\\\\\\\\\\\\\\\\\\\%d\n", stack_b->last->num);
-	ft_double_up(stack_a, stack_b);
-	print_stack(stack_a, stack_b);
-	printf("%d\n", stack_a->size);
+		ft_mid_al(stack_a, stack_b);
+		print_stack(stack_a, stack_b);
+		//printf("MID= %d \n",ft_mid_point(stack_a));
+	///	printf("%d\n", stack_a->size);
 	}
 	else
 		printf("Wrong arg!\n");
