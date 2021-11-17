@@ -6,13 +6,13 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:59:25 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/16 19:36:15 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/17 16:38:08 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-/*int	*ft_sort_int_tab(int *tab, int size)
+int	*ft_sort_int_tab(int *tab, int size)
 {
 	int save;
 	int i;
@@ -29,33 +29,12 @@
 			{
 				save = tab[i];
 				tab[i] = tab[i + 1];
-				printf("arr: %d\n", tab[i]);
+				//printf("arr: %d\n", tab[i]);
 				tab[i + 1] = save;
 			}
 			i++;
 		}
 		j++;
-	}
-	return (tab);
-}*/
-
-int		*ft_sort_int_tab(int *tab, int size)
-{
-	int		swap;
-	int		count;
-
-	count = 0;
-	while (count < (size - 1))
-	{
-		if (tab[count] > tab[count + 1])
-		{
-			swap = tab[count];
-			tab[count] = tab[count + 1];
-			tab[count + 1] = swap;
-			count = 0;
-		}
-		else
-			count++;
 	}
 	return (tab);
 }
@@ -75,7 +54,7 @@ int	ft_size_stack(t_list *stack)
 	return (i);
 }
 
-int	ft_mid_point(t_list *stack_a)
+int	ft_mid_point(t_list *stack_a, int size)
 {
 	t_element	*element;
 	int			i;
@@ -90,9 +69,9 @@ int	ft_mid_point(t_list *stack_a)
 		arr_a[++i] = element->num;
 		element = element->next;
 	}
-	printf("--------------%d\n", ft_size_stack(stack_a));
+	//printf("--------------%d\n", ft_size_stack(stack_a));
 	arr_a = ft_sort_int_tab(arr_a, ft_size_stack(stack_a));
-	mid = arr_a[ft_size_stack(stack_a)/2];
+	mid = arr_a[size/2];
 	free(arr_a);
 	return (mid);
 }
@@ -103,8 +82,15 @@ int	ft_check_end(t_list *stack_a)
 	element = stack_a->first;
 	while (element)
 	{
-		if (element < element->next)
-			return (1);
+		if (element->next != NULL)
+		{
+			if (element->num > element->next->num)
+			{
+	//			printf("1:%d | 2:%d\n", element->num, element->next->num);
+				return (1);
+			}
+		}
+	//	printf("/////1:%d\n", element->num);
 		element = element->next;
 	}
 	return (0);
@@ -114,45 +100,40 @@ void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 {
 	t_element	*element;
 	t_element	*last;
-	int			mid;
+	int			mid_point;
 	int			mid_size;
 	int			count;
 	int			size;
 	int			flag;
 
-//	element = stack_a->first;
-	mid = ft_mid_point(stack_a);
-	mid_size = ft_size_stack(stack_a) / 2;
-	count = 0;
 	flag = 0;
 	while (1)
 	{
-		printf("/*/*/*/*/\n");
+		if (ft_size_stack(stack_a) == stack_a->size && ft_check_end(stack_a) == 0)
+			break ;
 		if (flag < 1)
 		{
-			size = ft_size_stack(stack_a);
-			while (size > 2)
+			mid_size = ft_size_stack(stack_a) / 2;
+			while (mid_size > 2)
 			{
 				size = ft_size_stack(stack_a);
-				mid = ft_mid_point(stack_a);
+				mid_point = ft_mid_point(stack_a, ft_size_stack(stack_a));
 				mid_size = size / 2;
 				count = 0;
 				while (count < mid_size)
 				{
 					element = stack_a->first;
-					last = stack_a->last;
-					if (element->num < mid)
+					last = stack_a->last->num;
+					if (element->num < mid_point)
 					{
 						ft_push(stack_a, stack_b);
 						count++;
 					}
-					else if (last < mid)
+					else if (last < mid_point)
 						ft_rotate_down(stack_a);
 					else
 						ft_rotate_up(stack_a);
 				}
-				print_stack(stack_a, stack_b);
-			//	printf ("--------size: %d -------mid: %d ------mid_size: %d\n", size, mid, mid_size);
 			}
 			if ((ft_size_stack(stack_a) == 2) && (stack_a->first->num > stack_a->first->next->num))
 				ft_swap(stack_a);
@@ -160,38 +141,8 @@ void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 		}
 		else
 		{
-			ft_push(stack_b, stack_a);
-			while (size < stack_a->size)
-			{
-				size *= 2;
-				mid = ft_mid_point(stack_b);
-				mid_size = size / 2;
-				count = 0;
-				while (count < mid_size)
-				{
-					element = stack_b->first;
-					last = stack_b->last;
-					if (element->num >= mid)
-					{
-						ft_push(stack_b, stack_a);
-						count++;
-					}
-					else if (last > mid)
-						ft_rotate_down(stack_b);
-					else
-						ft_rotate_up(stack_b);
-					print_stack(stack_a, stack_b);
-					printf("---count: %d, ---mid_size: %d\n", count, mid_size);
-				}
-				print_stack(stack_a, stack_b);
-			//	printf ("--------size: %d -------mid: %d ------mid_size: %d\n", size, mid, mid_size);
-			}
-			if ((ft_size_stack(stack_b) == 2) && (stack_b->first->num < stack_b->first->next->num))
-				ft_swap(stack_b);
-			flag = 0;
-		}
-		if (ft_size_stack(stack_a) == stack_a->size && ft_check_end(stack_a) == 0)
 			break ;
+		}
 	}
 }
 
