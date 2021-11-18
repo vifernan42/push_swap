@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:59:25 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/18 15:27:01 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/18 19:42:42 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,6 +144,21 @@ int	ft_pos_down(t_list *stack, int n)
 	return (i);
 }
 
+//DISTANCIAS MINIMAS TANTO POR ARRIBA COMO POR ABAJAO
+
+int	ft_min_dist(t_list *stack, int n)
+{
+	int p;
+	int dist;
+
+	p = ft_pos_down(stack, n);
+	dist = ft_size_stack(stack) - p;
+
+	if (p > dist)
+		return (dist);
+	return (p);
+}
+
 void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 {
 	t_element	*element;
@@ -192,26 +207,86 @@ void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 			while (ft_size_stack(stack_b) != 0)
 			{
 				element = stack_b->first;
-				count = ft_max_value(stack_b);
-				mid_size = ft_size_stack(stack_b) / 2;
-				if (element->num == count)
+				if (ft_min_dist(stack_b, ft_min_value(stack_b) < ft_min_dist(stack_b, ft_max_value(stack_b))))
+				{
+						if (element->num == ft_max_value(stack_b))
+						{
+							ft_push(stack_b, stack_a);
+							print_stack(stack_a, stack_b);
+							break ;
+						}
+						else
+						{
+							if (ft_pos_down(stack_b, ft_max_value(stack_b)) <= ft_size_stack(stack_b) / 2)
+								ft_rotate_up(stack_b);
+							else
+								ft_rotate_down(stack_b);
+						}
+				}
+				else
+				{
+						if (element->num == ft_min_value(stack_b))
+						{
+							ft_push(stack_b, stack_a);
+							ft_rotate_up(stack_a);
+							break ;
+						}
+						else
+						{
+							if (ft_pos_down(stack_b, ft_min_value(stack_b)) <= ft_size_stack(stack_b) / 2)
+								ft_rotate_up(stack_b);
+							else
+								ft_rotate_down(stack_b);
+						}
+				}
+				break ;
+			}
+		}
+	}
+	while (ft_min_value(stack_a) != stack_a->first->num)
+		ft_rotate_down(stack_a);
+}
+
+
+
+/*
+ *
+ 	while (ft_size_stack(stack_b) != 0)
+			{
+				element = stack_b->first;
+			//	printf("MIN:%d POS:%d | MAX: %d POS: %d | SIZE: %d\n", ft_min_value(stack_b), ft_pos_down(stack_b, ft_min_value(stack_b)), ft_max_value(stack_b), ft_pos_down(stack_b, ft_max_value(stack_b)), ft_size_stack(stack_b));
+				if (element->num == ft_min_value(stack_b))
+				{
+					ft_push(stack_b, stack_a);
+					ft_rotate_up(stack_a);
+				}
+				if (ft_size_stack(stack_b) > 1 && stack_b->first->next->num == ft_min_value(stack_b))
+				{
+					ft_rotate_up(stack_b);
+					ft_push(stack_b, stack_a);
+					ft_rotate_up(stack_a);
+				}
+				if (ft_size_stack(stack_b) > 1 && stack_b->last->prev->num == ft_min_value(stack_b))
+				{
+					ft_rotate_down(stack_b);
+					ft_rotate_down(stack_b);
+					ft_push(stack_b, stack_a);
+					ft_rotate_up(stack_a);
+				//	print_stack(stack_a, stack_b);
+				}
+				if (element->num == ft_max_value(stack_b))
 					ft_push(stack_b, stack_a);
 				else
 				{
-					if (ft_pos_down(stack_b, count) <= mid_size)
+					if (ft_pos_down(stack_b, ft_max_value(stack_b)) <= ft_size_stack(stack_b) / 2)
 						ft_rotate_up(stack_b);
 					else
 						ft_rotate_down(stack_b);
 				}
 			}
 			break ;
-		}
-	}
-}
-
-
-
-
+ *
+ * */
 
 
 

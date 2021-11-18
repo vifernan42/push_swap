@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:13:40 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/18 15:24:32 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/18 19:25:06 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_double_up(t_list *stack_a, t_list *stack_b);
 void	ft_double_down(t_list *stack_a, t_list *stack_b);
 /*option2*/
 void	ft_mid_al(t_list *stack_a, t_list *stack_b);
+int		ft_min_dist(t_list *stack, int n);
 /*option1*/
 void	ft_check_size(t_list *stack_a, t_list *stack_b);
 
