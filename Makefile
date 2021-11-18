@@ -6,7 +6,7 @@
 #    By: vifernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 13:23:53 by vifernan          #+#    #+#              #
-#    Updated: 2021/11/16 15:51:32 by vifernan         ###   ########.fr        #
+#    Updated: 2021/11/18 13:42:13 by vifernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CFLAGS	= -Wall
 
 SRCS	= 	push_swap.c \
 			moves.c \
-			algorithm.c \
+			algorithm2.c \
 
 OBJS	= $(SRCS:.c=.o)
 CC		= 	gcc

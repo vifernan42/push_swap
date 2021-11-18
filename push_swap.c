@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/16 18:42:43 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/18 14:02:10 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,9 +160,10 @@ int main(int argc, char **argv)
 		ft_save_values(argc, argv, stack_a);
 		stack_b->first = NULL;
 		stack_b->last = NULL;
-		print_stack(stack_a, stack_b);
+	//	print_stack(stack_a, stack_b);
 		ft_mid_al(stack_a, stack_b);
-		print_stack(stack_a, stack_b);
+		//ft_check_size(stack_a, stack_b);
+		//print_stack(stack_a, stack_b);
 		//printf("MID= %d \n",ft_mid_point(stack_a));
 	///	printf("%d\n", stack_a->size);
 	}
