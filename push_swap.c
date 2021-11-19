@@ -6,12 +6,42 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/18 19:31:25 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/19 17:33:02 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
+/*
+void	leaks()
+{
+	system("leaks push_swap");
+}
+*/
+void	ft_free_elem(t_list *stack_a, t_list *stack_b)
+{
+	t_element *element;
+	t_element *l;
+	t_element *aux;
+
+	element = stack_a->first;
+	while (element)
+	{
+		printf("***************\n");
+		aux = element;
+		element = element->next;
+		free(aux);
+	}
+	l = stack_a->last;
+	while (element)
+	{
+		aux = l;
+		l = l->prev;
+		free(aux);
+	}
+	free(stack_a);
+	free(stack_b);
+}
 
 void	print_stack(t_list *stack_a, t_list *stack_b)
 {
@@ -64,6 +94,7 @@ int	ft_fill_a(t_list *stack_a, int val)
 		stack_a->last->next = current;
 		stack_a->last = current;
 	}
+//	free(current);
 	return (1);
 }
 
@@ -85,7 +116,6 @@ int	ft_norepeet(t_list *stack_a, int val)
 void	ft_fill_stack(char *temp, t_list *stack_a)
 {
 	char	**aux;
-//	int		val;
 	int		i;
 
 	aux = ft_split(temp, ' ');
@@ -127,9 +157,7 @@ void	ft_save_values(int argc, char **argv, t_list *stack_a)
 	i = 0;
 	j = -1;
 	while (argv[++i])
-	{
 		values[++j] = ft_split(argv[i], ' ');
-	}
 	values[--i] = NULL;
 	i = -1;
 	while (values[++i])
@@ -138,9 +166,13 @@ void	ft_save_values(int argc, char **argv, t_list *stack_a)
 		while (values[i][++j])
 		{
 			ft_check(values[i][j], stack_a);
+			free(values[i][j]);
 		}
 		free(values[i]);
 	}
+	free(values);
+//	ft_free_elem(stack_a, NULL);
+//	exit (0);
 }
 
 int main(int argc, char **argv)
@@ -149,6 +181,7 @@ int main(int argc, char **argv)
 	t_list	*stack_b;
 	int		i;
 
+//	atexit(leaks);
 	stack_a = malloc(sizeof(t_list));
 	stack_b = malloc(sizeof(t_list));
 	stack_b->id = 'b';
@@ -158,14 +191,12 @@ int main(int argc, char **argv)
 	if (argc > 1)
 	{
 		ft_save_values(argc, argv, stack_a);
+		system("leaks push_swap");
+	//	system("leaks push_swap");
 		stack_b->first = NULL;
 		stack_b->last = NULL;
-	//	print_stack(stack_a, stack_b);
 		ft_mid_al(stack_a, stack_b);
-		//ft_check_size(stack_a, stack_b);
-		print_stack(stack_a, stack_b);
-		//printf("MID= %d \n",ft_mid_point(stack_a));
-	///	printf("%d\n", stack_a->size);
+		ft_free_elem(stack_a, stack_b);
 	}
 	else
 		printf("Wrong arg!\n");

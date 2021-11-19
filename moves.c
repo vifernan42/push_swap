@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:53:23 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/18 11:40:51 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/19 13:09:47 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ void	ft_double_down(t_list *stack_a, t_list *stack_b)
 	element9a = stack_a->last;
 	element1b = stack_b->first;
 	element9b = stack_b->last;
-	printf("ENTRA!!!!!\n");
+//	printf("ENTRA!!!!!\n");
 	if (stack_a->first && stack_a->first->next && stack_b->first && stack_b->first->next)
 	{
 		stack_a->first = element9a;

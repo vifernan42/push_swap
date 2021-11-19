@@ -6,13 +6,13 @@
 #    By: vifernan <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 13:23:53 by vifernan          #+#    #+#              #
-#    Updated: 2021/11/18 13:42:13 by vifernan         ###   ########.fr        #
+#    Updated: 2021/11/19 17:22:03 by vifernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= push_swap
 
-CFLAGS	= -Wall
+CFLAGS	= -Wall 
 
 SRCS	= 	push_swap.c \
 			moves.c \
