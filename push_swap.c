@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/19 17:33:02 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/20 14:48:18 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_free_elem(t_list *stack_a, t_list *stack_b)
 	element = stack_a->first;
 	while (element)
 	{
-		printf("***************\n");
+//		printf("***************\n");
 		aux = element;
 		element = element->next;
 		free(aux);
@@ -191,11 +191,13 @@ int main(int argc, char **argv)
 	if (argc > 1)
 	{
 		ft_save_values(argc, argv, stack_a);
-		system("leaks push_swap");
+//		system("leaks push_swap");
 	//	system("leaks push_swap");
 		stack_b->first = NULL;
 		stack_b->last = NULL;
+		print_stack(stack_a, stack_b);
 		ft_mid_al(stack_a, stack_b);
+		print_stack(stack_a, stack_b);
 		ft_free_elem(stack_a, stack_b);
 	}
 	else

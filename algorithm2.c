@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   argorithm.c                                        :+:      :+:    :+:   */
+/*   algorithm2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:59:25 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/19 17:22:45 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/20 14:40:12 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,13 +185,13 @@ void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 				while (count < mid_size)
 				{
 					element = stack_a->first;
-					last = stack_a->last->num;
+					last = stack_a->last;
 					if (element->num < mid_point)
 					{
 						ft_push(stack_a, stack_b);
 						count++;
 					}
-					else if (last < mid_point)
+					else if (last->num < mid_point)
 						ft_rotate_down(stack_a);
 					else
 						ft_rotate_up(stack_a);
