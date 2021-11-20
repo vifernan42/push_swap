@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 18:53:23 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/19 13:09:47 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/20 20:42:40 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ void	ft_push(t_list *stack_out, t_list *stack_in)
 		{
 			if (stack_out->first && !stack_out->first->next)
 				ft_last_push(stack_out, stack_in);
-		else
+			else
 				ft_push_it(stack_out, stack_in);
 		}
 		if (stack_in->id == 'a')
@@ -146,6 +146,8 @@ void	ft_rotate_up(t_list *stack)
 
 	element1 = stack->first;
 	element9 = stack->last;
+	
+//	printf("%d\n", element9->prev->num);
 	if (stack->first && stack->first->next)
 	{
 		stack->first = element1->next;
@@ -160,7 +162,29 @@ void	ft_rotate_up(t_list *stack)
 			printf("rb\n");
 	}
 }
-
+/*
+void	ft_rotate_up(t_list *stack)
+{
+	t_element *first_element;
+	t_element *last_element;
+	
+	if (stack->first)
+	{
+		first_element = stack->first;
+		last_element = stack->last;
+		stack->first = first_element->next;
+		stack->last = first_element;
+		first_element->next->prev = NULL;
+		first_element->prev = last_element;
+		last_element->next = first_element;
+		first_element->next = NULL;
+		if (stack->name == 'a')
+			write(1, "ra\n", 3);
+		else
+			write(1, "rb\n", 3);
+	}
+}
+*/
 void	ft_double_up(t_list *stack_a, t_list *stack_b)
 {
 	t_element *element1a;

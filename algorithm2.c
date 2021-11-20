@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:59:25 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/20 14:40:12 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/20 20:42:54 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 			break ;
 		if (flag < 1)
 		{
-
 			mid_size = ft_size_stack(stack_a) / 2;
 			while (mid_size > 2)
 			{
@@ -203,10 +202,31 @@ void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 		}
 		else
 		{
+			stack_a->last = stack_a->first->next;
+			
+		//	printf("first->%d | last->%d\n", stack_a->first->num, stack_a->last->num);
+		//	break ;
 			while (ft_size_stack(stack_b) != 0)
 			{
+		//		printf("{=size%d=}\n", ft_size_stack(stack_a) + ft_size_stack(stack_b));
+				
+			/*	if (ft_size_stack(stack_a) + ft_size_stack(stack_b) != stack_a->size)
+				{
+					printf("********************************************************************\n");
+					print_stack(stack_a, stack_b);
+					printf("********************************************************************\n");
+					break ;
+				}
+				else
+				{
+					printf("--------------------------------------------------------------------\n");
+					print_stack(stack_a, stack_b);
+					printf("--------------------------------------------------------------------\n");
+				}*/
 				element = stack_b->first;
-				if (ft_min_dist(stack_b, ft_min_value(stack_b) < ft_min_dist(stack_b, ft_max_value(stack_b))))
+				if (ft_size_stack(stack_b) == 1)
+					ft_push(stack_b, stack_a);
+				else if (ft_min_dist(stack_b, ft_min_value(stack_b) < ft_min_dist(stack_b, ft_max_value(stack_b))))
 				{
 					while (1)
 					{
@@ -227,13 +247,16 @@ void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 				}
 				else
 				{
+					
 					while (1)
 					{
 						element = stack_b->first;
 						if (element->num == ft_min_value(stack_b))
 						{
 							ft_push(stack_b, stack_a);
+			//				print_stack(stack_a, stack_b);
 							ft_rotate_up(stack_a);
+			//				print_stack(stack_a, stack_b);
 							break ;
 						}
 						else

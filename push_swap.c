@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/20 14:48:18 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/20 20:42:28 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 void	leaks()
 {
 	system("leaks push_swap");
-}
-*/
+}*/
+
 void	ft_free_elem(t_list *stack_a, t_list *stack_b)
 {
 	t_element *element;
@@ -77,7 +77,7 @@ int	ft_fill_a(t_list *stack_a, int val)
 {
 	t_element	*current;
 
-	current = malloc(sizeof(t_element));
+	current = malloc(sizeof(*current));
 	if (stack_a->size == 0)
 	{
 		current->num = val;
@@ -126,7 +126,9 @@ void	ft_fill_stack(char *temp, t_list *stack_a)
 			stack_a->size += ft_fill_a(stack_a, ft_atoi(aux[i]));
 		else if (ft_norepeet(stack_a, ft_atoi(aux[i])) == 0)
 			stack_a->size += ft_fill_a(stack_a, ft_atoi(aux[i]));
+		free(aux[i]);
 	}
+	free(aux);
 }
 
 void	ft_check(char *temp, t_list *stack_a)
@@ -152,8 +154,9 @@ void	ft_save_values(int argc, char **argv, t_list *stack_a)
 	char	***values;
 	int		i;
 	int		j;
+	char	*aux;
 
-	values = malloc(argc * sizeof(values));
+	values = malloc(argc * sizeof(char ***));
 	i = 0;
 	j = -1;
 	while (argv[++i])
@@ -165,13 +168,14 @@ void	ft_save_values(int argc, char **argv, t_list *stack_a)
 		j = -1;
 		while (values[i][++j])
 		{
-			ft_check(values[i][j], stack_a);
+			aux = values[i][j];
+			ft_check(aux, stack_a);
 			free(values[i][j]);
 		}
-		free(values[i]);
+	//	free(values[i]);
 	}
 	free(values);
-//	ft_free_elem(stack_a, NULL);
+//	ft_free_lst(stack_a, NULL);
 //	exit (0);
 }
 
@@ -195,10 +199,10 @@ int main(int argc, char **argv)
 	//	system("leaks push_swap");
 		stack_b->first = NULL;
 		stack_b->last = NULL;
-		print_stack(stack_a, stack_b);
+//		print_stack(stack_a, stack_b);
 		ft_mid_al(stack_a, stack_b);
-		print_stack(stack_a, stack_b);
-		ft_free_elem(stack_a, stack_b);
+//		print_stack(stack_a, stack_b);
+	//	ft_free_elem(stack_a, stack_b);
 	}
 	else
 		printf("Wrong arg!\n");
