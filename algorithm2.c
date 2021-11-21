@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:59:25 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/20 20:42:54 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/21 18:24:23 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,35 @@ int	ft_min_dist(t_list *stack, int n)
 	return (p);
 }
 
+void	ft_three_rd(t_list *stack_a)
+{
+	if (stack_a->first->num > stack_a->first->next->num &&
+			stack_a->last->num > stack_a->first->next->num &&
+			stack_a->first->num < stack_a->last->num)
+		ft_swap(stack_a);
+	else if (stack_a->first->num > stack_a->first->next->num &&
+			stack_a->last->num < stack_a->first->next->num)
+	{
+		ft_swap(stack_a);
+		ft_rotate_down(stack_a);
+	}
+	else if (stack_a->first->num > stack_a->first->next->num &&
+			stack_a->last->num > stack_a->first->next->num &&
+			stack_a->first->num > stack_a->last->num)
+		ft_rotate_up(stack_a);
+	else if (stack_a->first->num < stack_a->first->next->num &&
+			stack_a->last->num < stack_a->first->next->num &&
+			stack_a->first->num < stack_a->last->num)
+	{
+		ft_swap(stack_a);
+		ft_rotate_up(stack_a);
+	}
+	else if (stack_a->first->num < stack_a->first->next->num &&
+			stack_a->last->num < stack_a->first->next->num &&
+			stack_a->first->num > stack_a->last->num)
+		ft_rotate_down(stack_a);
+}
+
 void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 {
 	t_element	*element;
@@ -174,6 +203,7 @@ void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 			mid_size = ft_size_stack(stack_a) / 2;
 			while (mid_size > 2)
 			{
+//			print_stack(stack_a, stack_b);
 				size = ft_size_stack(stack_a);
 				mid_point = ft_mid_point(stack_a, ft_size_stack(stack_a));
 				if (ft_size_stack(stack_a) > 100)
@@ -203,26 +233,8 @@ void	ft_mid_al(t_list *stack_a, t_list *stack_b)
 		else
 		{
 			stack_a->last = stack_a->first->next;
-			
-		//	printf("first->%d | last->%d\n", stack_a->first->num, stack_a->last->num);
-		//	break ;
 			while (ft_size_stack(stack_b) != 0)
 			{
-		//		printf("{=size%d=}\n", ft_size_stack(stack_a) + ft_size_stack(stack_b));
-				
-			/*	if (ft_size_stack(stack_a) + ft_size_stack(stack_b) != stack_a->size)
-				{
-					printf("********************************************************************\n");
-					print_stack(stack_a, stack_b);
-					printf("********************************************************************\n");
-					break ;
-				}
-				else
-				{
-					printf("--------------------------------------------------------------------\n");
-					print_stack(stack_a, stack_b);
-					printf("--------------------------------------------------------------------\n");
-				}*/
 				element = stack_b->first;
 				if (ft_size_stack(stack_b) == 1)
 					ft_push(stack_b, stack_a);

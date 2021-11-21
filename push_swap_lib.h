@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 16:13:40 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/20 19:44:37 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/21 01:37:49 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	print_stack(t_list *stack_a, t_list *stack_b);
 /*option2*/
 void	ft_mid_al(t_list *stack_a, t_list *stack_b);
 int		ft_min_dist(t_list *stack, int n);
+void	ft_three_rd(t_list *stack_a);
 /*option1*/
 void	ft_check_size(t_list *stack_a, t_list *stack_b);
 

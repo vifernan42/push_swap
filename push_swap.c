@@ -6,7 +6,7 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/20 20:42:28 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/21 01:47:34 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 void	leaks()
 {
 	system("leaks push_swap");
-}*/
-
+}
+*/
 void	ft_free_elem(t_list *stack_a, t_list *stack_b)
 {
 	t_element *element;
@@ -172,7 +172,7 @@ void	ft_save_values(int argc, char **argv, t_list *stack_a)
 			ft_check(aux, stack_a);
 			free(values[i][j]);
 		}
-	//	free(values[i]);
+		free(values[i]);
 	}
 	free(values);
 //	ft_free_lst(stack_a, NULL);
@@ -200,9 +200,12 @@ int main(int argc, char **argv)
 		stack_b->first = NULL;
 		stack_b->last = NULL;
 //		print_stack(stack_a, stack_b);
+		if (stack_a->size == 3)
+			ft_three_rd(stack_a);
+		else
 		ft_mid_al(stack_a, stack_b);
 //		print_stack(stack_a, stack_b);
-	//	ft_free_elem(stack_a, stack_b);
+		ft_free_elem(stack_a, stack_b);
 	}
 	else
 		printf("Wrong arg!\n");
