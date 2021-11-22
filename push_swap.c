@@ -6,7 +6,7 @@
 /*   By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/22 18:03:29 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/22 19:29:59 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int	main(int argc, char **argv)
 	t_list	*stack_b;
 	int		i;
 
+	atexit(leaks);
 	stack_a = malloc(sizeof(t_list));
 	stack_b = malloc(sizeof(t_list));
 	stack_b->id = 'b';

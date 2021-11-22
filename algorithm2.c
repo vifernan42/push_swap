@@ -6,7 +6,7 @@
 /*   By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:59:25 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/22 14:29:24 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/22 19:21:47 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ int	ft_mid_point(t_list *stack_a, int size)
 	i = 0;
 	while (i < size)
 	{
-		arr_a[i++] = element->num;
+		arr_a[i] = element->num;
 		element = element->next;
+		i++;
 	}
 	arr_a = ft_sort_int_tab(arr_a, size);
 	if (ft_size_stack(stack_a) > 100)
