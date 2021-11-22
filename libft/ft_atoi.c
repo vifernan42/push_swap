@@ -6,17 +6,17 @@
 /*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/19 08:48:51 by vifernan          #+#    #+#             */
-/*   Updated: 2021/04/21 16:26:36 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/22 16:43:46 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int					i;
 	int					p;
-	unsigned long long	num;
+	long				num;
 
 	i = 0;
 	p = 1;

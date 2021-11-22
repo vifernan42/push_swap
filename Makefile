@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vifernan <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/09 13:23:53 by vifernan          #+#    #+#              #
-#    Updated: 2021/11/20 21:43:43 by vifernan         ###   ########.fr        #
+#    Updated: 2021/11/22 18:01:31 by vifernan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,16 @@ NAME	= push_swap
 CFLAGS	= -Wall -Werror -Wextra
 
 SRCS	= 	push_swap.c \
+			stack_utils.c \
 			moves.c \
 			algorithm2.c \
+			a2b.c \
+			b2a.c \
+			fill.c \
+			push.c \
+			moves_notus.c \
+			moves_dotus.c \
+			moves_sotus.c \
 
 OBJS	= $(SRCS:.c=.o)
 CC		= 	gcc
@@ -46,4 +54,4 @@ fclean: clean
 	
 re: fclean all
 
-.PHONY: all clean fclean re bonus test
+.PHONY: all clean fclean re

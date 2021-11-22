@@ -3,31 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vifernan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/21 01:47:34 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/22 18:03:29 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap_lib.h"
 
-/*
-void	leaks()
+void	leaks(void)
 {
 	system("leaks push_swap");
 }
-*/
+
 void	ft_free_elem(t_list *stack_a, t_list *stack_b)
 {
-	t_element *element;
-	t_element *l;
-	t_element *aux;
+	t_element	*element;
+	t_element	*l;
+	t_element	*aux;
 
 	element = stack_a->first;
 	while (element)
 	{
-//		printf("***************\n");
 		aux = element;
 		element = element->next;
 		free(aux);
@@ -42,11 +40,11 @@ void	ft_free_elem(t_list *stack_a, t_list *stack_b)
 	free(stack_a);
 	free(stack_b);
 }
-
+/*
 void	print_stack(t_list *stack_a, t_list *stack_b)
 {
-	t_element *element_a;
-	t_element *element_b;
+	t_element	*element_a;
+	t_element	*element_b;
 
 	element_a = stack_a->first;
 	element_b = stack_b->first;
@@ -71,83 +69,7 @@ void	print_stack(t_list *stack_a, t_list *stack_b)
 	printf("_\t\t\t_\n");
 	printf("a\t\t\tb\n");
 	printf("**************************\n");
-}
-
-int	ft_fill_a(t_list *stack_a, int val)
-{
-	t_element	*current;
-
-	current = malloc(sizeof(*current));
-	if (stack_a->size == 0)
-	{
-		current->num = val;
-		current->next = NULL;
-		current->prev = NULL;
-		stack_a->first = current;
-		stack_a->last = current;
-	}
-	else
-	{
-		current->num = val;
-		current->next = NULL;
-		current->prev = stack_a->last;
-		stack_a->last->next = current;
-		stack_a->last = current;
-	}
-//	free(current);
-	return (1);
-}
-
-int	ft_norepeet(t_list *stack_a, int val)
-{
-	t_element *current;
-
-	current = stack_a->first;
-	while (current)
-	{
-		if (current->num == val)
-			return (1);
-		else
-			current = current->next;
-	}
-	return (0);
-}
-
-void	ft_fill_stack(char *temp, t_list *stack_a)
-{
-	char	**aux;
-	int		i;
-
-	aux = ft_split(temp, ' ');
-	i = -1;
-	while (aux[++i])
-	{
-		if (stack_a->size == 0)
-			stack_a->size += ft_fill_a(stack_a, ft_atoi(aux[i]));
-		else if (ft_norepeet(stack_a, ft_atoi(aux[i])) == 0)
-			stack_a->size += ft_fill_a(stack_a, ft_atoi(aux[i]));
-		free(aux[i]);
-	}
-	free(aux);
-}
-
-void	ft_check(char *temp, t_list *stack_a)
-{
-	int i;
-
-	i = -1;
-	while (temp[++i])
-	{
-		if ((ft_isdigit(temp[i]) != 1 && temp[i] != ' ' && temp[i] != '-') ||
-				(temp[i] == '-' && (ft_isdigit(temp[i + 1]) != 1 &&
-					(temp[i - 1] != ' ' || i != 0))))
-		{
-			printf("Wrong arg!\n");
-			exit (0);
-		}
-	}
-	ft_fill_stack(temp, stack_a);
-}
+}*/
 
 void	ft_save_values(int argc, char **argv, t_list *stack_a)
 {
@@ -175,17 +97,14 @@ void	ft_save_values(int argc, char **argv, t_list *stack_a)
 		free(values[i]);
 	}
 	free(values);
-//	ft_free_lst(stack_a, NULL);
-//	exit (0);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
 	int		i;
 
-//	atexit(leaks);
 	stack_a = malloc(sizeof(t_list));
 	stack_b = malloc(sizeof(t_list));
 	stack_b->id = 'b';
@@ -195,18 +114,16 @@ int main(int argc, char **argv)
 	if (argc > 1)
 	{
 		ft_save_values(argc, argv, stack_a);
-//		system("leaks push_swap");
-	//	system("leaks push_swap");
 		stack_b->first = NULL;
 		stack_b->last = NULL;
-//		print_stack(stack_a, stack_b);
 		if (stack_a->size == 3)
 			ft_three_rd(stack_a);
 		else
-		ft_mid_al(stack_a, stack_b);
-//		print_stack(stack_a, stack_b);
+			ft_mid_al(stack_a, stack_b, 0);
 		ft_free_elem(stack_a, stack_b);
 	}
+	else if (argc == 1)
+		return (0);
 	else
-		printf("Wrong arg!\n");
+		write(1, "Error\n", 6);
 }
