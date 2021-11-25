@@ -6,7 +6,7 @@
 /*   By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/22 19:29:59 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/25 09:57:07 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_free_elem(t_list *stack_a, t_list *stack_b)
 	free(stack_a);
 	free(stack_b);
 }
-/*
+
 void	print_stack(t_list *stack_a, t_list *stack_b)
 {
 	t_element	*element_a;
@@ -69,7 +69,7 @@ void	print_stack(t_list *stack_a, t_list *stack_b)
 	printf("_\t\t\t_\n");
 	printf("a\t\t\tb\n");
 	printf("**************************\n");
-}*/
+}
 
 void	ft_save_values(int argc, char **argv, t_list *stack_a)
 {
@@ -103,24 +103,24 @@ int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
-	int		i;
 
-	atexit(leaks);
+//	atexit(leaks);
 	stack_a = malloc(sizeof(t_list));
 	stack_b = malloc(sizeof(t_list));
 	stack_b->id = 'b';
 	stack_a->id = 'a';
 	stack_a->size = 0;
-	i = 5;
 	if (argc > 1)
 	{
 		ft_save_values(argc, argv, stack_a);
+//		print_stack(stack_a, stack_b);
 		stack_b->first = NULL;
 		stack_b->last = NULL;
 		if (stack_a->size == 3)
 			ft_three_rd(stack_a);
 		else
 			ft_mid_al(stack_a, stack_b, 0);
+//		print_stack(stack_a, stack_b);
 		ft_free_elem(stack_a, stack_b);
 	}
 	else if (argc == 1)

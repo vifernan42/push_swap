@@ -6,7 +6,7 @@
 /*   By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/16 11:59:25 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/22 19:21:47 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/25 09:27:14 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	ft_mid_point(t_list *stack_a, int size)
 	while (i < size)
 	{
 		arr_a[i] = element->num;
+//		printf("a:%d | n:%d / i=%d | size=%d\n", arr_a[i], element->num, i, size);
 		element = element->next;
 		i++;
 	}
