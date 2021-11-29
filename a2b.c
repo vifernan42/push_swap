@@ -6,7 +6,7 @@
 /*   By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:12:37 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/25 09:27:04 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/29 16:29:19 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	ft_a2b(t_list *stack_a, t_list *stack_b, int count)
 				ft_rotate_down(stack_a);
 			else
 				ft_rotate_up(stack_a);
-//			print_stack(stack_a, stack_b);
 		}
 	}
 }

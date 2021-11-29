@@ -6,7 +6,7 @@
 /*   By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 13:13:42 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/25 09:26:10 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/11/29 16:28:53 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_b2a_max(t_list *stack_a, t_list *stack_b, t_element *element)
 			else
 				ft_rotate_down(stack_b);
 		}
-//		print_stack(stack_a, stack_b);
 	}
 }
 
@@ -53,11 +52,21 @@ void	ft_b2a_min(t_list *stack_a, t_list *stack_b, t_element *element)
 			else
 				ft_rotate_down(stack_b);
 		}
-//		print_stack(stack_a, stack_b);
 	}
 }
 
-void	ft_b2a(t_list *stack_a, t_list *stack_b)
+void	ft_five(t_list *stack_a, t_list *stack_b)
+{
+	t_element	*element;
+
+	element = stack_b->first;
+	if (ft_size_stack(stack_b) == 1)
+		ft_push(stack_b, stack_a);
+	else
+		ft_b2a_max(stack_a, stack_b, element);
+}
+
+void	ft_more(t_list *stack_a, t_list *stack_b)
 {
 	t_element	*element;
 
@@ -70,5 +79,12 @@ void	ft_b2a(t_list *stack_a, t_list *stack_b)
 		ft_b2a_max(stack_a, stack_b, element);
 	else
 		ft_b2a_min(stack_a, stack_b, element);
-//	print_stack(stack_a, stack_b);
+}
+
+void	ft_b2a(t_list *stack_a, t_list *stack_b)
+{
+	if (stack_a->size <= 12)
+		ft_five(stack_a, stack_b);
+	else
+		ft_five(stack_a, stack_b);
 }
