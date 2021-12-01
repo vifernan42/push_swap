@@ -6,7 +6,7 @@
 /*   By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:43:20 by vifernan          #+#    #+#             */
-/*   Updated: 2021/11/25 09:26:47 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/12/01 17:59:45 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ void	ft_fill_stack(char *temp, t_list *stack_a)
 void	ft_check(char *temp, t_list *stack_a)
 {
 	int	i;
+	int	flag;
 
 	i = -1;
+	flag = 0;
 	while (temp[++i])
 	{
 		if ((ft_isdigit(temp[i]) != 1 && temp[i] != ' '
@@ -96,6 +98,13 @@ void	ft_check(char *temp, t_list *stack_a)
 			write(1, "Error\n", 6);
 			exit (0);
 		}
+		if (ft_isdigit(temp[i]) == 1)
+			flag++;
+	}
+	if (flag == 0)
+	{
+		write(1, "Error\n", 6);
+		exit (0);
 	}
 	ft_fill_stack(temp, stack_a);
 }

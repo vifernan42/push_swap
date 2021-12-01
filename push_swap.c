@@ -6,7 +6,7 @@
 /*   By: vifernan <vifernan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 15:09:49 by vifernan          #+#    #+#             */
-/*   Updated: 2021/12/01 15:18:53 by vifernan         ###   ########.fr       */
+/*   Updated: 2021/12/01 18:19:16 by vifernan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,15 @@ void	print_stack(t_list *stack_a, t_list *stack_b)
 	printf("**************************\n");
 }*/
 
+void	ft_check_nu(char *c)
+{
+	if (c == NULL)
+	{
+		write(1, "Error\n", 6);
+		exit (0);
+	}
+}
+
 void	ft_save_values(int argc, char **argv, t_list *stack_a)
 {
 	char	***values;
@@ -85,6 +94,7 @@ void	ft_save_values(int argc, char **argv, t_list *stack_a)
 		values[++j] = ft_split(argv[i], ' ');
 	values[--i] = NULL;
 	i = -1;
+	ft_check_nu(values[0][0]);
 	while (values[++i])
 	{
 		j = -1;
@@ -120,8 +130,6 @@ int	main(int argc, char **argv)
 			ft_mid_al(stack_a, stack_b, 0);
 		ft_free_elem(stack_a, stack_b);
 	}
-	else if (argc == 1)
-		return (0);
 	else
-		write(1, "Error\n", 6);
+		exit (0);
 }
